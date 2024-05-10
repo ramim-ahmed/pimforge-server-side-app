@@ -71,9 +71,48 @@ const getSingleQuerie = async (req, res) => {
   }
 };
 
+const updateQuerie = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = req.body;
+    const result = await querieService.updateQuerie(id, data);
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "Querie updated Successfully!!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: true,
+      message: "Querie updated Failed!!",
+      error,
+    });
+  }
+};
+
+const deleteQuerie = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await querieService.deleteQuerie(id);
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "Querie deleted Successfully!!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: true,
+      message: "Querie deleted Failed!!",
+      error,
+    });
+  }
+};
+
 module.exports.querieController = {
   createNew,
   getAllQueries,
   getMyAllQueries,
   getSingleQuerie,
+  updateQuerie,
+  deleteQuerie,
 };
