@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const httpStatus = require("http-status");
 const { applicationRoutes } = require("./app/routes");
+const notFoundApiHanlder = require("./app/middlewares/notFoundApiHandler");
+const globalErrorHandler = require("./app/middlewares/globalErrorHandler");
 
 // backend application
 const app = express();
@@ -21,27 +23,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1", applicationRoutes);
 
 // not found route handler
-app.use((req, res, next) => {
-  res.status(httpStatus.NOT_FOUND).json({
-    success: false,
-    message: "Not Found!!",
-    errorMessages: [
-      {
-        path: req.originalUrl,
-        message: "API not found!!",
-      },
-    ],
-  });
-  next();
-});
+app.use(notFoundApiHanlder);
 
 // global error handler
-app.use((err, req, res) => {
-  res.status(httpStatus[500]).json({
-    success: false,
-    message: err.message || "Something went wrong",
-    error: err,
-  });
-});
+app.use(globalErrorHandler);
 
 module.exports = app;
