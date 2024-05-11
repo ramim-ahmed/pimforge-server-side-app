@@ -5,8 +5,14 @@ const createNew = async (data) => {
   return result;
 };
 
-const getAllQueries = async () => {
-  const result = await Querie.find({}).sort({ createdAt: "desc" });
+const getAllQueries = async (searchTerm) => {
+  const result = await Querie.find(
+    searchTerm
+      ? {
+          name: { $regex: searchTerm, $options: "i" },
+        }
+      : {}
+  ).sort({ createdAt: "desc" });
   return result;
 };
 

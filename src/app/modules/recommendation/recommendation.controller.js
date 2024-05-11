@@ -37,6 +37,24 @@ const getMyRecommendations = async (req, res) => {
   }
 };
 
+const getRecommendationOnProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await recommendationService.getRecommendationOnProduct(id);
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "Recommendations On Product Fetch Successfully!!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: true,
+      message: "Recommendations On Product Fetch Failed!!",
+      error,
+    });
+  }
+};
+
 const getRecommendationsForMe = async (req, res) => {
   try {
     const { email } = req.query;
@@ -81,5 +99,6 @@ module.exports.recommendationController = {
   createRecommendation,
   getMyRecommendations,
   getRecommendationsForMe,
+  getRecommendationOnProduct,
   deleteRecommendation,
 };

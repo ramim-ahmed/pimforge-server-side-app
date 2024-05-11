@@ -10,6 +10,10 @@ router.get(
   "/recommendations-for-me",
   recommendationController.getRecommendationsForMe
 );
+router.get(
+  "/reacommendation-on-product/:id",
+  recommendationController.getRecommendationOnProduct
+);
 router.post("/create-new", recommendationController.createRecommendation);
 router.delete("/:id", recommendationController.deleteRecommendation);
 module.exports.recommendationRoutes = router;

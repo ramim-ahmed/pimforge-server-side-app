@@ -21,6 +21,15 @@ const getMyRecommendations = async (email) => {
   return result;
 };
 
+const getRecommendationOnProduct = async (id) => {
+  const result = await Recommendation.find({
+    querieId: id,
+  }).sort({
+    createdAt: "desc",
+  });
+  return result;
+};
+
 const getRecommendationsForMe = async (email) => {
   const result = await Recommendation.find({ "queryUser.email": email }).sort({
     createdAt: "desc",
@@ -45,4 +54,5 @@ module.exports.recommendationService = {
   deleteRecommendation,
   getMyRecommendations,
   getRecommendationsForMe,
+  getRecommendationOnProduct,
 };

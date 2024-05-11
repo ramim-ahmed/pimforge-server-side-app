@@ -21,7 +21,8 @@ const createNew = async (req, res) => {
 
 const getAllQueries = async (req, res) => {
   try {
-    const result = await querieService.getAllQueries();
+    const { searchTerm } = req.query;
+    const result = await querieService.getAllQueries(searchTerm);
     res.status(httpStatus.OK).json({
       success: true,
       message: "Queries Fetch All Successfully!!",
