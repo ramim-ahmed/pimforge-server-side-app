@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const httpStatus = require("http-status");
 const { applicationRoutes } = require("./app/routes");
 const notFoundApiHanlder = require("./app/middlewares/notFoundApiHandler");
@@ -9,9 +10,15 @@ const globalErrorHandler = require("./app/middlewares/globalErrorHandler");
 const app = express();
 
 // middlware
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // application routes
 app.get("/", (req, res) => {

@@ -39,6 +39,13 @@ const getAllQueries = async (req, res) => {
 const getMyAllQueries = async (req, res) => {
   try {
     const { email } = req.query;
+    const tokenEmail = req.user.email;
+    if (email !== tokenEmail) {
+      return res.status(httpStatus.FORBIDDEN).json({
+        success: false,
+        message: "Unauthorised Access!!",
+      });
+    }
     const result = await querieService.getMyAllQueries(email);
     res.status(httpStatus.OK).json({
       success: true,

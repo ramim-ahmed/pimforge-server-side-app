@@ -3,6 +3,7 @@ const { querieRoutes } = require("../modules/querie/querie.route");
 const {
   recommendationRoutes,
 } = require("../modules/recommendation/recommendation.route");
+const { tokenRoutes } = require("../modules/token/token.route");
 const router = express.Router();
 
 const moduleRoutes = [
@@ -13,6 +14,10 @@ const moduleRoutes = [
   {
     path: "/recommendations",
     route: recommendationRoutes,
+  },
+  {
+    path: "/token",
+    route: tokenRoutes,
   },
 ];
 
