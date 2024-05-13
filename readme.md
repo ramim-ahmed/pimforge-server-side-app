@@ -26,7 +26,7 @@ Model
 
 ---
 
-## base_url = https://trip-trove-server-side.vercel.app/api/v1
+## base_url = https://pim-forge-server.vercel.app/api/v1
 
 #### Country
 
