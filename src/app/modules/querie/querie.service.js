@@ -5,15 +5,22 @@ const createNew = async (data) => {
   return result;
 };
 
-const getAllQueries = async (searchTerm) => {
+const getAllQueries = async (searchTerm, limit, skipIndex) => {
   const result = await Querie.find(
     searchTerm
       ? {
           name: { $regex: searchTerm, $options: "i" },
         }
       : {}
-  ).sort({ createdAt: "desc" });
-  return result;
+  )
+    .sort({ createdAt: "desc" })
+    .limit(limit)
+    .skip(skipIndex);
+  const total = await Querie.estimatedDocumentCount();
+  return {
+    total,
+    data: result,
+  };
 };
 
 const getMyAllQueries = async (email) => {

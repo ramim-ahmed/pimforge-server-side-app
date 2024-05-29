@@ -22,11 +22,21 @@ const createNew = async (req, res) => {
 const getAllQueries = async (req, res) => {
   try {
     const { searchTerm } = req.query;
-    const result = await querieService.getAllQueries(searchTerm);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 6;
+    const skipIndex = (page - 1) * limit;
+    const result = await querieService.getAllQueries(
+      searchTerm,
+      limit,
+      skipIndex
+    );
     res.status(httpStatus.OK).json({
       success: true,
       message: "Queries Fetch All Successfully!!",
-      data: result,
+      meta: {
+        total: result?.total,
+      },
+      data: result?.data,
     });
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).json({
