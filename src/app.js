@@ -12,7 +12,7 @@ const app = express();
 // middlware
 app.use(
   cors({
-    origin: ["https://pim-forge-client-side.vercel.app"],
+    origin: ["pim-forge-client-app.vercel.app"],
     credentials: true,
   })
 );
