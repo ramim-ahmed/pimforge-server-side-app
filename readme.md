@@ -54,3 +54,36 @@ Tech Uses 🔥;
 - [Mongoose](https://mongoosejs.com/): That help us to model or collection field schema validation in server-side to store data in mongodb
 - [JWT](https://jwt.io/introduction): That help us to secure private resource data.
 - [cookieParser](https://www.npmjs.com/package/cookie-parser): Extracts the cookie data from the HTTP request and converts it into a usable format that can be accessed by the server-side code
+
+Please follow the below instructions to run your machine.
+
+1. install nodejs -
+
+   ```sh
+   https://nodejs.org/en/download/package-manager
+   ```
+
+2. install nodemoen -
+   ```sh
+   npm i -g nodemon
+   ```
+3. clone this repository
+   ```sh
+       https://github.com/ramim-ahmed/pimforge-server-side-app.git
+   ```
+4. set env variable create [.env] file
+   ```sh
+   DATABASE_URL = your database_url
+   PORT = 8000
+   access_token_secret= your accesstoken
+   ```
+5. install all packages
+
+   ```sh
+   npm install
+   ```
+
+6. run project
+   ```sh
+   npm run dev
+   ```
